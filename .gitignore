@@ -1,0 +1,25 @@
+proxyenv/
+# Python-related files
+*.py[cod]
+__pycache__/
+*.so
+
+# Django-related files
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+
+# Django migrations
+**/migrations/*
+
+# Virtual environments
+venv/
+env/
+
+# Editor-related files
+.vscode/
+.idea/
+*.swp
