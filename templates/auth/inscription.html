@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - BricoClub</title>
+    <link rel="stylesheet" href="{% static 'css/auth/inscription.css' %}">
+</head>
+<body>
+    <h1>Inscription</h1>
+
+    <!-- Error message box -->
+    {% if messages %}
+    <div class="error-message-box" id="errorMessageBox">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form action="{% url "signup" %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input">
+            <label for="image">Avatar</label>
+            <input type="file" name="image" accept="image/png, image/jpeg, image/jpg">
+        </div>
+        <div class="input">
+            <label for="pseudo">Pseudo</label>
+            <input type="text" name="pseudo" id="pseudo" {% if 'pseudo' in error_fields %}class="error"{% endif %}>
+        </div>
+        <div class="input">
+            <label for="lastname">Nom</label>
+            <input type="text" name="lastname" id="lastname">
+        </div>
+        <div class="input">
+            <label for="firstname">Prénoms</label>
+            <input type="text" name="firstname" id="firstname">
+        </div>
+        <div class="input">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" {% if 'email' in error_fields %}class="error"{% endif %}>
+        </div>
+        <div class="input">
+            <label for="date">Date de naissance</label>
+            <input type="date" name="date" id="date">
+        </div>
+        <div class="input">
+            <label for="pass1">Mot de passe</label>
+            <input type="password" name="pass1" id="pass1" {% if 'pass1' in error_fields %}class="error"{% endif %}>
+        </div>
+        <div class="input">
+            <label for="pass2">Confirmer Mot de passe</label>
+            <input type="password" name="pass2" id="pass2" {% if 'pass2' in error_fields %}class="error"{% endif %}>
+        </div>
+        <button type="submit">S'inscrire</button>
+        <a href="{% url "login" %}" class="bottom-links">se connecter</a>
+    </form>
+    <a href="{% url "home" %}" class="bottom-links">Retour</a>
+
+    <script>
+        // Show the error message box with animation
+        const errorMessageBox = document.getElementById('errorMessageBox');
+        if (errorMessageBox) {
+            errorMessageBox.classList.add('show'); // Slide into view
+
+            // Hide after 10 seconds
+            setTimeout(() => {
+                errorMessageBox.classList.remove('show'); // Slide out
+            }, 10000);
+        }
+    </script>
+</body>
+</html>

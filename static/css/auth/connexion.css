@@ -1,0 +1,174 @@
+/* Common styles for both pages */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --background-color: #f3f4f6;
+    --card-background: #ffffff;
+    --text-color: #1f2937;
+    --input-border: #e5e7eb;
+    --input-focus: #3b82f6;
+    --error-color: #ef4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Style for error message box */
+.error-message-box {
+    position: fixed;
+    top: -100px; /* Start off-screen */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff4d4f;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    transition: top 0.5s ease-in-out;
+    z-index: 1000;
+}
+.error-message-box.show {
+    top: 20px; /* Slide into view */
+}
+
+/* Style for input fields with errors */
+.input input.error {
+    border-color: #ff4d4f;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-color);
+    padding: 1.5rem;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: var(--card-background);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+h1 {
+    color: var(--text-color);
+    font-size: 1.875rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    color: var(--text-color);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--input-border);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+    color: var(--text-color);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+.auth-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.auth-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.auth-links a:hover {
+    color: var(--primary-hover);
+}
+
+.back-link {
+    margin-top: 1.5rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-link:hover {
+    color: var(--primary-color);
+}
+
+/* File input specific styles */
+input[type="file"] {
+    padding: 0.5rem;
+    border: 2px dashed var(--input-border);
+    background-color: #f8fafc;
+}
+
+input[type="file"]:hover {
+    border-color: var(--primary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .auth-container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}

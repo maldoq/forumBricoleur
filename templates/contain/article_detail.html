@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article - BricoClub</title>
+    <link rel="stylesheet" href="{% static 'css/contain/article_detail.css' %}">
+</head>
+<body>
+    <nav>
+        <h2>BricoClub</h2>
+        <ul>
+            <li><a href="{% url 'home' %}">Accueil</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li><a href="{% url 'conversations' %}">Chat</a></li>
+            <li><a href="{% url 'myblog' %}">My blog</a></li>
+        </ul>
+        {% if user %}
+        <div class="register">
+            <a href="{% url 'login' %}">{{ user.pseudoUser }}</a>
+            <a href="{% url 'logout' %}">Se déconnecter</a>
+        </div>
+        {% else %}
+        <a href="{% url 'login' %}">Connexion</a>
+        {% endif %}
+    </nav>
+    <div class="contain">
+        <div class="article-list">
+            <article class="article-detail">
+                <div class="img">
+                    <img src="{{ article.imageArt.url }}" alt="Image de l'article" />
+                </div>
+                <h2>{{ article.titreArt }}</h2>
+                <div class="info">
+                    <h4>{{ article.user.pseudoUser }}</h4>
+                    <p>{{ article.dateModif|date:'Y-m-d' }}</p>
+                    <div class="likes-dislikes">
+                        <div class="like">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.24001 11V20H5.63001C4.73001 20 4.01001 19.28 4.01001 18.39V12.62C4.01001 11.73 4.74001 11 5.63001 11H7.24001ZM18.5 9.5H13.72V6C13.72 4.9 12.82 4 11.73 4H11.64C11.24 4 10.88 4.24 10.72 4.61L7.99001 11V20H17.19C17.92 20 18.54 19.48 18.67 18.76L19.99 11.26C20.15 10.34 19.45 9.5 18.51 9.5H18.5Z"></path>
+                            </svg>
+                            {{ article.like_count }}
+                        </div>
+                        <div class="dislike">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 5.61V11.38C20 12.27 19.27 13 18.38 13H16.77V4H18.38C19.28 4 20 4.72 20 5.61ZM5.34001 5.24L4.02001 12.74C3.86001 13.66 4.56001 14.5 5.50001 14.5H10.28V18C10.28 19.1 11.18 20 12.27 20H12.36C12.76 20 13.12 19.76 13.28 19.39L16.01 13V4H6.81001C6.08001 4 5.46001 4.52 5.33001 5.24H5.34001Z"></path>
+                            </svg>
+                            {{ article.dislike_count }}
+                        </div>
+                    </div>
+                    <p>{{ article.comment_count }} {% if article.comment_count > 1 %}comments{% else %}comment{% endif %}</p>
+                </div>
+                <p class="description">{{ article.descriptArt }}</p>
+            </article>
+            <div class="comment-section">
+                <h1>Commentaire</h1>
+                <form action="{% url 'add_comment' idArt=article.idArt %}" method="post">
+                    {% csrf_token %}
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" required></textarea>
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+            <div class="comments">
+                {% for comment in comments %}
+                <div class="comment">
+                    <h4>{{ comment.user.pseudoUser }}</h4>
+                    <p>{{ comment.descriptCom }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <footer>
+        <h2>BricoClub</h2>
+    </footer>
+    <!-- Floating Like and Dislike Buttons -->
+    <div class="floating-buttons">
+        <div class="floating-button like-button" data-article-id="{{ article.idArt }}">
+            <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier"> 
+                    <path d="M7.24001 11V20H5.63001C4.73001 20 4.01001 19.28 4.01001 18.39V12.62C4.01001 11.73 4.74001 11 5.63001 11H7.24001ZM18.5 9.5H13.72V6C13.72 4.9 12.82 4 11.73 4H11.64C11.24 4 10.88 4.24 10.72 4.61L7.99001 11V20H17.19C17.92 20 18.54 19.48 18.67 18.76L19.99 11.26C20.15 10.34 19.45 9.5 18.51 9.5H18.5Z" fill=""></path> 
+                </g>
+            </svg>
+            <span class="like-count">{{ article.like_count }}</span>
+        </div>
+        <div class="floating-button dislike-button" data-article-id="{{ article.idArt }}">
+            <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier"> 
+                    <path d="M20 5.61V11.38C20 12.27 19.27 13 18.38 13H16.77V4H18.38C19.28 4 20 4.72 20 5.61ZM5.34001 5.24L4.02001 12.74C3.86001 13.66 4.56001 14.5 5.50001 14.5H10.28V18C10.28 19.1 11.18 20 12.27 20H12.36C12.76 20 13.12 19.76 13.28 19.39L16.01 13V4H6.81001C6.08001 4 5.46001 4.52 5.33001 5.24H5.34001Z" fill=""></path> 
+                </g>
+            </svg>
+            <span class="dislike-count">{{ article.dislike_count }}</span>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.like-button').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const articleId = btn.dataset.articleId;
+                try {
+                    const response = await fetch(`/like-article/${articleId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        }
+                    });
+                    const data = await response.json();
+                    if (data.success) {
+                        btn.querySelector('.like-count').textContent = data.like_count;
+                        btn.querySelector('.dislike-count').textContent = data.dislike_count;
+                    } else {
+                        alert(data.error);
+                    }
+                } catch (error) {
+                    console.error('Error liking article:', error);
+                }
+            });
+        });
+    
+        document.querySelectorAll('.dislike-button').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const articleId = btn.dataset.articleId;
+                try {
+                    const response = await fetch(`/dislike-article/${articleId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        }
+                    });
+                    const data = await response.json();
+                    if (data.success) {
+                        btn.querySelector('.like-count').textContent = data.like_count;
+                        btn.querySelector('.dislike-count').textContent = data.dislike_count;
+                    } else {
+                        alert(data.error);
+                    }
+                } catch (error) {
+                    console.error('Error disliking article:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

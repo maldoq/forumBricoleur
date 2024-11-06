@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - BricoClub</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contain/article.css' %}">
 </head>
 <body>
     <nav>
@@ -16,7 +16,7 @@
             <li><a href="{% url "conversations" %}">Chat</a></li>
             <li><a href="{% url "myblog" %}">My blog</a></li>
         </ul>
-        {% if is_connected %}
+        {% if user %}
         <div class="register">
             <a href="{% url "login" %}">{{user.pseudoUser}}</a>
             <a href="{% url "logout" %}">Se deconnecter</a>
@@ -26,9 +26,13 @@
         {% endif %}
     </nav>
     <div class="contain">
-        <div class="banner">
-            <h1>Bienvenue sur notre site</h1>
-            <p>Découvrez les nouveaux articles sur des astuces de bricolage (pas en herbe) mais en copeaux de bois</p>
+        <div class="tag">
+            <h2>Tag</h2>
+            <div class="ul">
+                {% for tag in tags %}
+                <li><a href="">{{tag.libelleTag}}</a></li>
+                {% endfor %}
+            </div>
         </div>
         <div class="article-list">
             <input type="search" name="" id="" placeholder="recherche ...">

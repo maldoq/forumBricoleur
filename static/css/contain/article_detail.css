@@ -1,0 +1,244 @@
+/* Modern Variables */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1d4ed8;
+    --background-color: #f8fafc;
+    --text-color: #1e293b;
+    --gray-light: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+svg{
+    width: 15px;
+    height: 15px;
+    fill: var(--primary-color);
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Navigation */
+nav {
+    background-color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav h2 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+.article-detail {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.article-detail .img img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.article-detail h2 {
+    margin: 1rem 0;
+    color: var(--primary-color);
+}
+
+.article-detail .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.likes-dislikes {
+    display: flex;
+    gap: 1rem;
+}
+
+.like, .dislike {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.description {
+    margin: 1.5rem 0;
+    line-height: 1.6;
+}
+
+.comment-section {
+    margin-top: 2rem;
+    background-color: #f0f4f8;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.comment-section h1 {
+    margin-bottom: 1rem;
+}
+
+.comment-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-section label {
+    margin-bottom: 0.5rem;
+}
+
+.comment-section textarea {
+    height: 80px;
+    padding: 0.5rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.comment-section button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.comment-section button:hover {
+    background-color: var(--secondary-color);
+}
+
+.comments {
+    margin-top: 2rem;
+}
+
+.comment {
+    background-color: var(--gray-light);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.comment h4 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+/* Floating Buttons */
+.floating-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between buttons */
+}
+
+.floating-button {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 20px;
+    width: 60px; /* Button diameter */
+    height: 60px; /* Button diameter */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.floating-button:hover {
+    transform: scale(1.1); /* Scale up on hover */
+}
+
+.floating-button svg {
+    width: 30px; /* SVG icon size */
+    height: 30px; /* SVG icon size */
+    fill: #fff;
+}
+
+.floating-button span {
+    font-size: 14px; /* Text size below the icon */
+    margin-top: 4px; /* Space between icon and text */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .article-detail .info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .likes-dislikes {
+        margin-top: 0.5rem;
+    }
+}
+
+
+/* Footer */
+footer {
+    background-color: white;
+    padding: 2rem;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+footer h2 {
+    color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+}

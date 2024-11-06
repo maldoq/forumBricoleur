@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{user.pseudoUser}} Blog - BricoClub</title>
+    <link rel="stylesheet" href="{% static 'css/contain/myblog_article_detail.css' %}">
+</head>
+<body>
+    <nav>
+        <h2>BricoClub</h2>
+        <ul>
+            <li><a href="{% url "home" %}">Accueil</a></li>
+            <li><a href="{% url "blog" %}">Blog</a></li>
+            <li><a href="{% url "conversations" %}">Chat</a></li>
+            <li><a href="{% url "myblog" %}">My blog</a></li>
+        </ul>
+        {% if user %}
+        <div class="register">
+            <a href="{% url 'login' %}">{{ user.pseudoUser }}</a>
+            <a href="{% url 'logout' %}">Se déconnecter</a>
+        </div>
+        {% else %}
+        <a href="{% url "login" %}">Connexion</a>
+        {% endif %}
+    </nav>
+    <div class="contain">
+        <div class="navbar-self">
+            <h1>{{user.pseudoUser}}</h1>
+            <ul>
+                <li><a href="">Articles</a></li>
+                <li><a href="">Profile</a></li>
+                <li><a href="">others</a></li>
+            </ul>
+        </div>
+        <div class="article-list">
+            <h1>{{title}}</h1>
+            <form action="{% if action == 'edit' %}{% url 'edit_article' article.idArt %}{% else %}{% url 'add_article' %}{% endif %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="label-input">
+                    <label for="image">Image</label>
+                    <input type="file" name="image" id="image">
+                </div>
+                <div class="label-input">
+                    <label for="title">Titre</label>
+                    <input type="text" name="title" id="title" {% if action == "edit" %} value="{{ article.titreArt }}" {% endif %}>
+                </div>
+                <div class="label-input">
+                    <label for="tag">Tag</label>
+                    <select name="tag" id="tag">
+                        {% for tag in tags %}
+                        <option value="{{ tag.idTag }}" 
+                            {% if action == "edit" %}
+                                {% if article.tag.idTag == tag.idTag %} selected {% endif %}
+                            {% endif %}>
+                            {{ tag.libelleTag }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="label-input">
+                    <label for="descript">Contenue</label>
+                    <textarea name="descript" id="descript">{% if action == "edit" %}{{ article.descriptArt }}{% endif %}</textarea>
+                </div>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <h2>BricoClub</h2>
+
+    </footer>
+</body>
+</html>

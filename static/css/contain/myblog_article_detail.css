@@ -1,0 +1,295 @@
+/* Modern Variables */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1d4ed8;
+    --background-color: #f8fafc;
+    --text-color: #1e293b;
+    --gray-light: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Navigation */
+nav {
+    background-color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav h2 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+/* Container */
+.contain {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Navbar-self Styles */
+.navbar-self {
+    width: 20%; /* Occupies 20% of the container's width */
+    position: fixed; /* Fixes the navbar-self to the left side */
+    left: 0;
+    top: 4rem; /* Adjusts according to the nav height */
+    padding: 1rem;
+    background-color: #ffffff;
+    border-right: 1px solid var(--gray-light);
+    box-shadow: var(--shadow);
+    height: 100vh; /* Full viewport height */
+}
+
+.navbar-self h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.navbar-self ul {
+    list-style: none;
+    padding: 0;
+}
+
+.navbar-self ul li {
+    margin: 1rem 0;
+}
+
+.navbar-self ul a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar-self ul a:hover {
+    color: var(--primary-color);
+}
+
+/* Minihead Styles */
+.minihead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+}
+
+.minihead h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.minihead a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-color);
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+}
+
+.minihead a:hover {
+    background-color: #003a99;
+}
+
+/* Article Styles */
+.article-list {
+    margin-left: 22%; /* Adjusts to account for navbar-self width */
+    padding: 2rem;
+}
+
+.articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+article {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.3s;
+    padding: 1rem;
+}
+
+article:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+article h2 {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+}
+
+article h2:hover {
+    color: var(--secondary-color);
+}
+
+article .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+article .action a {
+    margin-right: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+article .action a:hover {
+    color: var(--secondary-color);
+}
+
+.img {
+    height: 180px;
+    background-color: var(--gray-light);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Article List Styles */
+.article-list {
+    margin-left: 22%; /* Aligns with the navbar-self */
+    padding: 2rem;
+    background-color: var(--background-color);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+}
+
+/* Article Title */
+.article-list h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Form Labels and Inputs */
+.label-input {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.label-input label {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.label-input input[type="file"],
+.label-input input[type="text"],
+.label-input select,
+.label-input textarea {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 0.5rem;
+    background-color: white;
+    transition: border-color 0.2s;
+}
+
+.label-input input[type="file"] {
+    border: none; /* Optional: remove border for file input */
+}
+
+.label-input input:focus,
+.label-input select:focus,
+.label-input textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Textarea Specific Styles */
+.label-input textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    color: white;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--secondary-color);
+}
+
+button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .article-list {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .navbar-self {
+        position: static;
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+    }
+}

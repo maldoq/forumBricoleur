@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - BricoClub</title>
+    <link rel="stylesheet" href="{% static 'css/auth/connexion.css' %}">
+</head>
+<body>
+    <!-- Error message box -->
+    {% if messages %}
+    <div class="error-message-box" id="errorMessageBox">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <h1>Connexion</h1>
+    <form action="{% url "login" %}" method="post">
+        {% csrf_token %}
+        <div class="input"><label for="">Pseudo</label><input type="text" name="pseudo" {% if 'pseudo' in error_fields %}class="error"{% endif %}></div>
+        <div class="input"><label for="">Password</label><input type="password" name="pass" {% if 'pass' in error_fields %}class="error"{% endif %}></div>
+        <button type="submit">Se connecter</button>
+        <a href="{% url "signup" %}" class="bottom-links">s'inscrire</a>
+    </form>
+    <a href="{% url "home" %}" class="bottom-links">Retour</a>
+    <script>
+        // Show the error message box with animation
+        const errorMessageBox = document.getElementById('errorMessageBox');
+        if (errorMessageBox) {
+            errorMessageBox.classList.add('show'); // Slide into view
+
+            // Hide after 10 seconds
+            setTimeout(() => {
+                errorMessageBox.classList.remove('show'); // Slide out
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

@@ -24,6 +24,24 @@ class Article(models.Model):
 
     def __str__(self):
         return self.titreArt
+    
+    def comment_count(self):
+        return self.comment_set.count()
+
+    def like_count(self):
+        return self.like_set.filter(liked=True).count()
+
+    def dislike_count(self):
+        return self.dislike_set.filter(disliked=True).count()
+    
+class ArticleItem(models.Model):
+    idArtItem = models.AutoField(primary_key=True)
+    titreArt = models.CharField(max_length=100, default='')
+    descriptArt = models.TextField(default='')
+    dateAdd = models.DateTimeField(auto_now_add=True)
+    dateModif = models.DateTimeField(auto_now=True)
+    status = models.BooleanField(default=True)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, default=None)
 
 class Comment(models.Model):
     idCom = models.AutoField(primary_key=True)
@@ -32,7 +50,7 @@ class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.idCom
+        return str(self.idCom)
 
 class Like(models.Model):
     idLike = models.AutoField(primary_key=True)
@@ -41,7 +59,7 @@ class Like(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.idLike
+        return str(self.idLike)
 
 class DisLike(models.Model):
     idDis = models.AutoField(primary_key=True)

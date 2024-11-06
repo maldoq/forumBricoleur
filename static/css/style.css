@@ -1,0 +1,355 @@
+/* Modern Variables */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1d4ed8;
+    --background-color: #f8fafc;
+    --text-color: #1e293b;
+    --gray-light: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+svg{
+    width: 15px;
+    height: 15px;
+    fill: var(--primary-color);
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Banner */
+.banner {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 4rem 2rem;
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.banner p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Navigation */
+nav {
+    background-color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav h2 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+/* Container */
+.contain {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.tag {
+    width: 25%; /* Set the tag div width to 25% */
+    margin-left: auto; /* Push the tag div to the right */
+    padding: 20px; /* Optional: Add some padding */
+    background-color: #f8f9fa; /* Optional: Add a background color */
+    border: 1px solid #dee2e6; /* Optional: Add a border */
+}
+
+.article-list {
+    flex: 1; /* Make article list take the remaining width */
+    padding: 20px; /* Optional: Add some padding */
+}
+
+/* Style for the tag links */
+.tag .ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+}
+
+.tag .ul li {
+    margin: 10px 0; /* Add space between items */
+}
+
+.tag .ul a {
+    text-decoration: none; /* Remove underline */
+    color: #007BFF; /* Set a blue color for the links */
+    font-weight: bold; /* Make the font bold */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.tag .ul a:hover {
+    color: #0056b3; /* Change color on hover */
+    text-decoration: underline; /* Underline on hover for better visibility */
+}
+
+/* Optional: Add active state style for the links if needed */
+.tag .ul a:active {
+    color: #003d7a; /* Darker color when the link is active */
+}
+
+/* Article List */
+.article-list h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+/* Style for the search input */
+input[type="search"] {
+    width: 100%; /* Make it take the full width of the container */
+    padding: 10px; /* Add padding for comfort */
+    margin-bottom: 10px;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Increase font size for better readability */
+    transition: border-color 0.3s; /* Smooth transition for focus effect */
+}
+
+/* Change border color on focus */
+input[type="search"]:focus {
+    border-color: #007BFF; /* Change border color to blue when focused */
+    outline: none; /* Remove default outline */
+}
+
+/* Optional: Add a placeholder style */
+input[type="search"]::placeholder {
+    color: #999; /* Gray color for the placeholder text */
+    font-style: italic; /* Italic style for placeholder */
+}
+
+.articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+article {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+}
+
+article:hover {
+    transform: translateY(-4px);
+}
+
+.img {
+    height: 200px;
+    background-color: var(--gray-light);
+    position: relative;
+}
+
+/* Style for the tag */
+.article-list .articles .tag {
+    background-color: #007BFF; /* Blue background color */
+    color: white; /* White text color */
+    padding: 5px 10px; /* Padding for better spacing */
+    border-radius: 10px; /* Rounded corners */
+    position: absolute; /* Position it absolutely within the .img div */
+    top: 10px; /* Adjust as needed */
+    left: 10px; /* Adjust as needed */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Change background color on hover */
+.article-list .articles .tag:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+article h2 {
+    padding: 1rem;
+    font-size: 1.25rem;
+}
+
+article a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.info {
+    padding: 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 1rem;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.like, .dislike {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+article p {
+    padding: 1rem;
+    color: #475569;
+}
+
+/* Footer */
+footer {
+    background-color: white;
+    padding: 2rem;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+footer h2 {
+    color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .banner {
+        padding: 2rem 1rem;
+    }
+
+    .banner h1 {
+        font-size: 2rem;
+    }
+
+    .contain {
+        padding: 1rem;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Navigation */
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Banner */
+    .banner {
+        padding: 2rem 1rem;
+    }
+
+    .banner h1 {
+        font-size: 1.8rem;
+    }
+
+    .banner p {
+        font-size: 1rem;
+    }
+
+    /* Articles */
+    .articles {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Article Text Adjustments */
+    article h2 {
+        font-size: 1.1rem;
+    }
+
+    article p {
+        font-size: 0.9rem;
+    }
+
+    .info {
+        font-size: 0.8rem;
+    }
+
+    /* Footer */
+    footer {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further scaling for very small screens */
+    nav h2 {
+        font-size: 1.25rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+    }
+
+    .banner h1 {
+        font-size: 1.5rem;
+    }
+
+    .banner p {
+        font-size: 0.9rem;
+    }
+
+    input[type="search"] {
+        font-size: 14px;
+    }
+
+    /* Adjust padding and margins for smaller devices */
+    .contain {
+        padding: 1rem;
+    }
+
+    footer h2 {
+        font-size: 1.2rem;
+    }
+}

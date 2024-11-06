@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - BricoClub</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{{user.pseudoUser}} Blog - BricoClub</title>
+    <link rel="stylesheet" href="{% static 'css/contain/myblog.css' %}">
 </head>
 <body>
     <nav>
@@ -16,29 +16,35 @@
             <li><a href="{% url "conversations" %}">Chat</a></li>
             <li><a href="{% url "myblog" %}">My blog</a></li>
         </ul>
-        {% if is_connected %}
+        {% if user %}
         <div class="register">
-            <a href="{% url "login" %}">{{user.pseudoUser}}</a>
-            <a href="{% url "logout" %}">Se deconnecter</a>
+            <a href="{% url 'login' %}">{{ user.pseudoUser }}</a>
+            <a href="{% url 'logout' %}">Se déconnecter</a>
         </div>
         {% else %}
         <a href="{% url "login" %}">Connexion</a>
         {% endif %}
     </nav>
     <div class="contain">
-        <div class="banner">
-            <h1>Bienvenue sur notre site</h1>
-            <p>Découvrez les nouveaux articles sur des astuces de bricolage (pas en herbe) mais en copeaux de bois</p>
+        <div class="navbar-self">
+            <h1>{{user.pseudoUser}}</h1>
+            <ul>
+                <li><a href="">Articles</a></li>
+                <li><a href="">Profiles</a></li>
+                <li><a href="">others</a></li>
+            </ul>
         </div>
         <div class="article-list">
-            <input type="search" name="" id="" placeholder="recherche ...">
+            <div class="minihead">
+                <h2>Articles</h2>
+                <a href="{% url "add_article" action='add' %}">Ajouter</a>
+            </div>
             <div class="articles">
                 {% for article in articles %}
                 <article>
-                    <div class="img"><p class="tag">{{ article.tag.libelleTag }}</p></div>
-                    <a href="{% url "blog_detail" idArt=article.idArt %}"><h2>{{article.titreArt}}</h2></a>
+                    <div class="img"><img src="" alt=""></div>
+                    <a href=""><h2>{{article.titreArt}}</h2></a>
                     <div class="info">
-                        <h4>{{article.user.pseudoUser}}</h4>
                         <p>{{article.dateModif|date:'Y-m-d'}}</p>
                         <div class="like">
                             <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
@@ -61,18 +67,20 @@
                             {{ article.dislike_count }}
                         </div>
                         <p>{{ article.comment_count }} {% if article.comment_count > 1 %}comments{% else %}comment{% endif %} </p>
+                        <div class="action">
+                            <a href="{% url "detail_article" action='edit' idArt=article.idArt %}">modifier</a>
+                            <a href="{% url "detail_article" action='show' idArt=article.idArt %}">voir</a>
+                            <a href="{% url "delete_article" idArt=article.idArt %}">supprimer</a>
+                        </div>
                     </div>
-                    <p>
-                        {{article.descriptArt}}
-                    </p>
                 </article>
                 {% endfor %}
+                
             </div>
         </div>
     </div>
     <footer>
         <h2>BricoClub</h2>
-
     </footer>
 </body>
 </html>
